@@ -9,11 +9,12 @@ import java.util.Set;
  */
 public class P3 {
     public static void main(String[] args) {
-        int ans = lengthOfLongestSubstring("pwwkew");
+        P3 p = new P3();
+        int ans = p.lengthOfLongestSubstring("pwwkew");
         System.out.println(ans);
     }
 
-    public static int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
