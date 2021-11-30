@@ -9,8 +9,10 @@ public class ArraySort {
 
     public static void main(String[] args) {
 //        int[] a = {3, 2, 4, 6, 1};
-        int[] a = {1, 1, 1, 1, 1};
-        quickSort(a);
+//        int[] a = {1, 1, 1, 1, 1};
+//        int[] a = {1, 2, 3, 4, 5, 6};
+        int[] a = {6, 5, 4, 3, 2, 1};
+        heapSort(a);
         System.out.println(Arrays.toString(a));
     }
 
@@ -201,7 +203,7 @@ public class ArraySort {
         }
         if (pos != i) {
             swap(a, pos, i);
-            heapify(a, i, len);
+            heapify(a, pos, len);
         }
     }
 
