@@ -1,10 +1,6 @@
 package test.dp;
 
-import utils.Tool;
-
-import java.util.Arrays;
-
-public class Bag01 {
+public class Knapsack01 {
 
     static int[] w = {2,3,5,5};
     static int[] v = {2,4,3,7};
@@ -12,8 +8,8 @@ public class Bag01 {
     static int c = 10;
 
     public static void main(String[] args) {
-        Bag01 solution = new Bag01();
-        int ans = solution.f5(n-1, c);
+        Knapsack01 solution = new Knapsack01();
+        int ans = solution.f2(n-1, c);
         System.out.println(ans);
     }
 
@@ -26,7 +22,10 @@ public class Bag01 {
         }
 
         int dp1 = f1(n-1, c);
-        int dp2 = f1(n-1, c-w[n]) + v[n];
+        int dp2 = 0;
+        if (c >= w[n]) {
+            dp2 = f1(n-1, c-w[n]) + v[n];
+        }
 
         return Math.max(dp1, dp2);
     }
@@ -45,7 +44,10 @@ public class Bag01 {
         }
 
         int dp1 = f1(n-1, c);
-        int dp2 = f1(n-1, c-w[n]) + v[n];
+        int dp2 = 0;
+        if (c >= w[n]) {
+            dp2 = f1(n-1, c-w[n]) + v[n];
+        }
         dp[n][c] = Math.max(dp1, dp2);
 
 
