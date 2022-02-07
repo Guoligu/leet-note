@@ -23,7 +23,7 @@ public class P46 {
     }
 
     /**
-     * 时间复杂度 O(n!)
+     * 时间复杂度 O(n * n!)
      * 空间复杂度 O(n)
      */
     public List<List<Integer>> s1(int[] nums) {
@@ -31,27 +31,27 @@ public class P46 {
             return new ArrayList<>();
         }
 
-        boolean[] isVisited = new boolean[nums.length];
+        boolean[] visited = new boolean[nums.length];
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> line = new ArrayList<>();
-        backtrack(nums, isVisited, 0, ans, line);
+        backtrack(nums, visited, 0, ans, line);
 
         return ans;
     }
 
-    public void backtrack(int[] nums, boolean[] isVisited, int idx, List<List<Integer>> ans, List<Integer> line) {
+    public void backtrack(int[] nums, boolean[] visited, int idx, List<List<Integer>> ans, List<Integer> line) {
         if (idx == nums.length) {
             ans.add(new ArrayList<>(line));
             return;
         }
 
         for (int i = 0; i < nums.length; i++) {
-            if (!isVisited[i]) {
-                isVisited[i] = true;
+            if (!visited[i]) {
+                visited[i] = true;
                 line.add(nums[i]);
-                backtrack(nums, isVisited, idx+1, ans, line);
+                backtrack(nums, visited, idx+1, ans, line);
                 line.remove(idx);
-                isVisited[i] = false;
+                visited[i] = false;
             }
         }
     }

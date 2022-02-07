@@ -19,7 +19,7 @@ public class Coins {
 
     public static void main(String[] args) {
         Coins solution = new Coins();
-        int ans = solution.f3(amount);
+        int ans = solution.f2(amount);
         System.out.println(ans);
     }
 
@@ -59,12 +59,12 @@ public class Coins {
             return dp[n];
         }
 
-        int res = Integer.MAX_VALUE;
+        dp[n] = Integer.MAX_VALUE;
         for (int coin : coins) {
-            res = Math.min( f2(n-coin)+1, res);
+            dp[n] = Math.min( f2(n-coin)+1, dp[n]);
         }
 
-        return res;
+        return dp[n];
     }
 
     /**

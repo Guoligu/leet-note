@@ -1,5 +1,7 @@
 package utils;
 
+import utils.struct.ListNode;
+
 import java.util.Arrays;
 
 public class Tool {
@@ -100,6 +102,42 @@ public class Tool {
                 }
             }
             System.out.println();
+        }
+    }
+
+
+    // 数字字符串"[1, 2, 3]" -> 链表
+    public static ListNode createListNode(String str) {
+        // 检查字符串是否合法
+        
+        // 解析字符串
+        String noSquareBracketsStr = str.substring(1, str.length()-1);
+        String[] elemsStrArr = noSquareBracketsStr.split(",");
+
+        int[] elems = new int[elemsStrArr.length];
+        for (int i = 0; i < elemsStrArr.length; i++) {
+            int elem = Integer.parseInt(elemsStrArr[i].trim());
+            elems[i] = elem;
+        }
+
+        // 生成链表
+        ListNode head = new ListNode();
+        ListNode tail = head;
+
+        for (int elem : elems) {
+            tail.next = new ListNode();
+            tail = tail.next;
+
+            tail.val = elem;
+        }
+
+        return head.next;
+    }
+
+    public static void showListNode(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val + " ");
+            head = head.next;
         }
     }
 }
