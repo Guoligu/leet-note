@@ -140,4 +140,43 @@ public class Tool {
             head = head.next;
         }
     }
+
+    public static char[][] createTwoDimArr(String input) {
+
+        String oneBracketStr = input.substring(2, input.length()-2);
+        String[] oneDimStrArr = oneBracketStr.split("],\\[");
+
+        int n = oneDimStrArr.length;
+        int m = oneDimStrArr[0].split(",").length;
+        char[][] res = new char[n][m];
+
+        int i = 0;
+        for (String oneDimStr : oneDimStrArr) {
+            String noDimStr = oneDimStr.trim().substring(1,oneDimStr.length()-1);
+            String[] elemStrArr = noDimStr.split("\",\"");
+            int j = 0;
+            for (String elemStr :elemStrArr) {
+                res[i][j] = elemStr.charAt(0);
+                j++;
+            }
+            i++;
+        }
+
+        return res;
+    }
+
+
+    public static void showTwoDimArr(char[][] a) {
+        if (a == null || a.length == 0) {
+            System.out.println("null arr");
+            return;
+        }
+
+        for (char[] line : a) {
+            for (char x : line) {
+                System.out.print(x + " ");
+            }
+            System.out.println();
+        }
+    }
 }

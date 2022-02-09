@@ -9,7 +9,7 @@ import java.util.*;
 public class P51 {
     public static void main(String[] args) {
         P51 p = new P51();
-        List<List<String>> ans = p.solveNQueens(4);
+        List<List<String>> ans = p.solveNQueens(8);
 
         for (List<String> matrix : ans) {
             System.out.println(matrix);
