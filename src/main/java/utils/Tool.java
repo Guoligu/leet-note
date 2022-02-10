@@ -106,7 +106,7 @@ public class Tool {
     }
 
 
-    // 数字字符串"[1, 2, 3]" -> 链表
+    // 数字字符串[1, 2, 3] -> 链表
     public static ListNode createListNode(String str) {
         // 检查字符串是否合法
         
@@ -132,6 +132,15 @@ public class Tool {
         }
 
         return head.next;
+    }
+
+    // 字符串["0201","0101","0102","1212","2002"] -> 字符串数组
+    public static String[] createStringArr(String str) {
+        // 检查字符串是否合法
+
+        // 解析字符串
+        String noSquareBracketsStr = str.substring(2, str.length()-2);
+        return noSquareBracketsStr.split("\",\"");
     }
 
     public static void showListNode(ListNode head) {
