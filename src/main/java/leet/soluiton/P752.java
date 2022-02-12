@@ -13,12 +13,12 @@ import java.util.*;
 public class P752 {
     public static void main(String[] args) {
         P752 p = new P752();
-        int step = p.openLock(Tool.createStringArr("[\"8887\",\"8889\",\"8878\",\"8898\",\"8788\",\"8988\",\"7888\",\"9888\"]"), "8888");
+        int step = p.openLock(Tool.createStringArr("[\"0201\",\"0101\",\"0102\",\"1212\",\"2002\"]"), "0202");
         System.out.println(step);
     }
 
     public int openLock(String[] deadends, String target) {
-        return s2(deadends, target);
+        return s3(deadends, target);
     }
 
     /**
@@ -159,6 +159,66 @@ public class P752 {
 
 
     /**
-     * 方法3：启发式搜索，不会
+     * 方法3：双向bfs
+     */
+    public int s3(String[] deadends, String target) {
+        if (target == null) {
+            return -1;
+        }
+        if (deadends == null) {
+            deadends = new String[] {};
+        }
+        if ("0000".equals(target)) {
+            return 0;
+        }
+
+        Set<String> dead = new HashSet<>();
+        Collections.addAll(dead, deadends);
+        if (dead.contains("0000")) {
+            return -1;
+        }
+        Set<String> visited = new HashSet<>();
+        int step = 0;
+
+        Set<String> q1 = new HashSet<>();
+        q1.add("0000");
+        Set<String> q2 = new HashSet<>();
+        q2.add(target);
+
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            // 优化空间
+            if (q1.size() > q2.size()) {
+                Set<String> temp = q1;
+                q1 = q2;
+                q2 = temp;
+            }
+
+            step++;
+            Set<String> temp = new HashSet<>();
+            for (String status : q1) {
+                List<String> adjSet = adj(status);
+                for (String nextStatus : adjSet) {
+                    if (q2.contains(nextStatus)) {
+                        return step;
+                    }
+                    if (dead.contains(nextStatus) || visited.contains(nextStatus)) {
+                        continue;
+                    }
+
+                    visited.add(nextStatus);
+                    temp.add(nextStatus);
+                }
+            }
+
+            q1 = q2;
+            q2 = temp;
+
+        }
+
+        return -1;
+    }
+
+    /**
+     * 方法4：启发式搜索，不会
      */
 }

@@ -188,4 +188,23 @@ public class Tool {
             System.out.println();
         }
     }
+
+    // head表示链表头，pos表示环形的起始位置
+    public static ListNode createCircularList(ListNode head, int pos) {
+
+
+        ListNode tail = head;
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+
+        ListNode cycle = head;
+        for (int i = 0; i < pos; i++) {
+            cycle = cycle.next;
+        }
+
+        tail.next = cycle;
+
+        return head;
+    }
 }
