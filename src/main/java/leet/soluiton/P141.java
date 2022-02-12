@@ -4,13 +4,14 @@ import utils.Tool;
 import utils.struct.ListNode;
 
 /**
- * 环形链表
+ * @desc: 环形链表
+ * @tag: 双指针
  */
 public class P141 {
     public static void main(String[] args) {
         P141 p = new P141();
         ListNode head = Tool.createListNode("[3,2,0,-4]");
-//        Tool.createCircularList(head, 1);
+        Tool.createCircularList(head, 1);
         boolean ans = p.hasCycle(head);
         System.out.println(ans);
     }
