@@ -8,10 +8,10 @@ import java.util.Arrays;
 public class ArraySort {
 
     public static void main(String[] args) {
-//        int[] a = {3, 2, 4, 6, 1};
+        int[] a = {3, 2, 4, 6, 1};
 //        int[] a = {1, 1, 1, 1, 1};
 //        int[] a = {1, 2, 3, 4, 5, 6};
-        int[] a = {6, 5, 4, 3, 2, 1};
+//        int[] a = {6, 5, 4, 3, 2, 7, 1};
         heapSort(a);
         System.out.println(Arrays.toString(a));
     }
@@ -178,7 +178,7 @@ public class ArraySort {
         int len = a.length;
 
         // 构建大根堆
-        for (int i = len / 2; i >= 0;  i--) {
+        for (int i = len/2-1; i >= 0;  i--) {
             heapify(a, i, len);
         }
 

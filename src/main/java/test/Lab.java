@@ -1,7 +1,7 @@
 package test;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class Lab {
@@ -14,8 +14,10 @@ public class Lab {
         System.out.println(Integer.toBinaryString(256));
 
         System.out.println("\nreflection");
+        Class<?>[] interfaces = LinkedList.class.getInterfaces();
+        System.out.println(Arrays.toString(interfaces));
 
-        System.out.println("\npoly");
+        System.out.println("\npolymorphic");
         Animal a = new Animal();
         a.show();
         Dog d = new Dog();
@@ -24,7 +26,7 @@ public class Lab {
         ad.show();
         System.out.println(ad.age);
 
-
+        System.out.println("\nclassloader");
         System.out.println(System.getProperty("sum.boot.class.path"));
         System.out.println(System.getProperty("java.ext.dirs"));
         System.out.println(System.getProperty("java.class.path"));
@@ -35,6 +37,7 @@ public class Lab {
         System.out.println(classLoader.getParent().getParent());
         ClassLoader classLoader1 = String.class.getClassLoader();
         System.out.println(classLoader1);
+
 
     }
 
