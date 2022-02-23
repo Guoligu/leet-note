@@ -4,47 +4,73 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer[]> solution = solution(new int[]{3, 2, 5, 4, 6, 1});
-        for (Integer[] arr : solution) {
-            System.out.println(Arrays.toString(arr));
-        }
+        Main m = new Main();
+//        m.generate(4);
+        double ans = m.maxProfit(new double[]{1, 5, 2});
+        System.out.println(ans);
     }
 
-    public static List<Integer[]> solution(int[] arr) {
-        // 在这⾥写代码
-        if (arr == null || arr.length == 0) {
-            return new ArrayList<>();
+    public ArrayList<ArrayList<Integer>> generate (int numRows) {
+        // write code here
+        int[][] triangle = new int[numRows][numRows];
+
+        for (int i = 0; i < numRows; i++) {
+            triangle[i][i] = 1;
+            triangle[i][0] = 1;
         }
 
-        List<Integer[]> ans = new ArrayList<>();
-        int n = arr.length;
-
-        // i : 0l/1r
-        Integer[][] temp = new Integer[n][2];
-
-        // left
-        Deque<Integer[]> left = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
-            while (!left.isEmpty() && left.peek()[0] >= arr[i]) {
-                left.pop();
+        for (int i = 2; i < numRows; i++) {
+            for (int j = 1; j < i; j++) {
+                triangle[i][j] = triangle[i-1][j] + triangle[i-1][j-1];
             }
-            temp[i][0] = left.isEmpty() ? -1 : left.peek()[1];
-            left.push(new Integer[] {arr[i], i});
         }
 
-        // right
-        Deque<Integer[]> right = new LinkedList<>();
-        for (int i = n-1; i >= 0; i--) {
-            while (!right.isEmpty() && right.peek()[0] >= arr[i]) {
-                right.pop();
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i < numRows; i++) {
+            ArrayList<Integer> line = new ArrayList<>();
+            for (int j = 0; j <= i; j++) {
+                line.add(triangle[i][j]);
             }
-            temp[i][1] = right.isEmpty() ? -1 : right.peek()[1];
-            right.push(new Integer[] {arr[i], i});
+            ans.add(line);
         }
 
-        // build ans
+        return ans;
+    }
+
+    public double maxProfit (double[] prices) {
+        // write code here
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+
+        int n = prices.length;
+        Deque<Double> stack = new ArrayDeque<>();
+        double ans = 0;
+        double maxElem = prices[0];
+        double minElem = prices[0];
+
         for (int i = 0; i < n; i++) {
-            ans.add(new Integer[] {temp[i][0], temp[i][1]});
+            while (!stack.isEmpty() && stack.peek() >= prices[i]) {
+                maxElem = stack.pop();
+                ans = Math.max(ans, maxElem - minElem);
+            }
+            minElem = stack.isEmpty() ? prices[i] : minElem;
+            stack.push(prices[i]);
+        }
+
+        return ans;
+    }
+
+    public double maxProfit2 (double[] prices) {
+        // write code here
+
+        int n = prices.length;
+        double ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < n; j++) {
+                ans = Math.max(ans, prices[j] - prices[i]);
+            }
         }
 
         return ans;
