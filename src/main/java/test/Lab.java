@@ -1,5 +1,6 @@
 package test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -38,6 +39,28 @@ public class Lab {
         ClassLoader classLoader1 = String.class.getClassLoader();
         System.out.println(classLoader1);
 
+        System.out.println("\nextends");
+        System.out.println(Animal.i);
+        System.out.println(Dog.i);
+
+
+        System.out.println("\nString");
+        String str = null;
+        System.out.println(str);
+        System.out.println("s=" + str);
+
+        System.out.println("\nexception");
+        Lab l = new Lab();
+        l.testTry();
+        System.out.println("in the main");
+
+        System.out.println("\nstackOverFlowError");
+        try {
+            l.stackLeek();
+        } catch (Throwable e) {
+            System.out.println("当前栈深度: " + l.deep);
+//            e.printStackTrace();
+        }
 
     }
 
@@ -57,10 +80,30 @@ public class Lab {
     public int hashCode() {
         return Objects.hash(name, age);
     }
+
+    public void testTry() {
+        try {
+            System.out.println("int testTry() method.");
+            System.out.println("I will return now.");
+            System.out.println(1 / 0);
+            System.out.println("emmm...");
+        } catch (Exception e) {
+            System.out.println("exception.");
+        } finally {
+            System.out.println("I am finally block. omg, it's return.");
+        }
+    }
+
+    private int deep = 0;
+    public void stackLeek() {
+        deep++;
+        stackLeek();
+    }
 }
 
 
 class Animal {
+    public static int i;
     int age = 10;
     public void show() {
         System.out.println("animal");
