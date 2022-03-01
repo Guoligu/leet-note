@@ -1,6 +1,7 @@
 package utils;
 
 import utils.struct.ListNode;
+import utils.struct.TreeNode;
 
 import java.util.Arrays;
 
@@ -206,5 +207,31 @@ public class Tool {
         tail.next = cycle;
 
         return head;
+    }
+
+    public static TreeNode createTreeByLevel(Integer[] a) {
+        if (a == null || a.length == 0) {
+            return null;
+        }
+
+        int n = a.length;
+        TreeNode[] nodes = new TreeNode[n];
+
+        for (int i = 0; i < n; i ++) {
+            if (a[i] == null) {
+                continue;
+            }
+            nodes[i] = new TreeNode(a[i]);
+        }
+
+        for (int i = 0; i < (n-1)/2; i++) {
+            if (nodes[i] == null) {
+                continue;
+            }
+            nodes[i].left = nodes[i*2+1];
+            nodes[i].right = nodes[i*2+2];
+        }
+
+        return nodes[0];
     }
 }

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 数独
+ * @desc: 数独
+ * @tag: 回溯
  */
 public class P37 {
     public static void main(String[] args) {

@@ -62,6 +62,11 @@ public class Lab {
 //            e.printStackTrace();
         }
 
+        System.out.println("\nreference");
+        Integer i1 = new Integer(10);
+        Integer i2 = new Integer(10);
+        System.out.println(i1 == i2);
+
     }
 
     private String name;

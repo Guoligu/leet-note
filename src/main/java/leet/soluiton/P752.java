@@ -8,6 +8,7 @@ import java.util.*;
  * @desc: 打开转盘锁
  * @tag: bfs
  * @tag: 启发式搜索
+ * @tag: 双向bfs
  *
  */
 public class P752 {

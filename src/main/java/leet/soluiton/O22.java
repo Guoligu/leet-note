@@ -3,7 +3,9 @@ package leet.soluiton;
 import utils.struct.ListNode;
 
 /**
- * 剑指offer22.链表中倒数第k个节点
+ * @desc: 剑指offer22.链表中倒数第k个节点
+ * @tag: 双指针
+ *
  */
 public class O22 {
 
