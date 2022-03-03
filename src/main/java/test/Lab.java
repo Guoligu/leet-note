@@ -1,9 +1,7 @@
 package test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Objects;
+import java.util.*;
 
 public class Lab {
     public static void main(String[] args) throws Exception {
@@ -67,6 +65,28 @@ public class Lab {
         Integer i2 = new Integer(10);
         System.out.println(i1 == i2);
 
+        System.out.println("\nCollection");
+        List<Integer> list = new ArrayList<>();
+        list.add(null);
+        System.out.println(list);
+        Map<Integer, Integer> m = new HashMap<>();
+        m.put(10, null);
+        m.put(null, 10);
+        System.out.println(m);
+        Queue<Integer> queue = new ArrayDeque<>();
+//        queue.offer(null);
+        System.out.println(queue);
+
+        System.out.println("\nLinkedHashMap");
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>(3);
+        map.put(1, 10);
+        map.put(3, 113);
+        map.put(2, 11);
+        System.out.println(map.keySet());
+        System.out.println(map.getOrDefault(3,-1));
+        System.out.println(map.keySet());
+        map.put(4, 14);
+        System.out.println(map.keySet());
     }
 
     private String name;
